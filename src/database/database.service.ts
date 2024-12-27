@@ -14,7 +14,9 @@ export class DatabaseService implements OnApplicationBootstrap {
     private userRepository: Repository<User>,
   ) { }
   findAll() {
-    return this.userRepository.find();
+    return this.userRepository.find({order: {
+      id: 'ASC', 
+    },});
   }
 
   findByUsername(username: string) {

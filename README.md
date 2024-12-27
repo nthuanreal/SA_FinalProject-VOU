@@ -1,14 +1,14 @@
 
 ## Description
 
-[Nest] User service of [] system
+[Nest] User service of VOU system
 
 ## Project setup
 1/ install packages
 ```bash
 $ npm install
 ```
-2/ create .env from .env.example
+2/ create your .env from .env.example
 3/ This service using postgresSQL. If you use another database, edit in database/database.module.ts: "type: 'postgres'" to "type: 'YOUR_DATABASE_TYPE'"
 
 ## Compile and run the project
@@ -37,11 +37,14 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 ## TASKS LIST:
-- [x] init database.
-- [x] init user module.
-- [x] create user entity.
-- [x] basic user services. (CRUD)
+- [x] Database.
+- [x] create user module & routes.
+- [x] User entity.
+- [x] create auth module & routes.
 - [x] DTOs
-- [x] Authentication.
-- [ ] Authorization. (bugged)
+- [x] Authentication. (jwt)
+- [x] Authorization. (admin,partner,user)
+- [ ] Finish UserModule.
+- [ ] Admin FrontEnd
+- [ ] API module.
 
