@@ -1,8 +1,8 @@
 {
   "name": "user-service",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "0.1.1",
+  "description": "user service of VOU system",
+  "author": "Nguyen Dinh Nam Thuan",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -26,6 +26,7 @@
     "@nestjs/jwt": "^10.2.0",
     "@nestjs/passport": "^10.0.3",
     "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/serve-static": "^4.0.2",
     "@nestjs/typeorm": "^10.0.2",
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
@@ -40,6 +41,7 @@
     "typeorm": "^0.3.20"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.26",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",

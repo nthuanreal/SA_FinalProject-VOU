@@ -7,7 +7,6 @@ import {
   Body, 
   Param, 
   Req, 
-  BadRequestException 
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
@@ -19,37 +18,28 @@ import { RolesGuard } from 'src/roles.guards';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  // Admin-only routes: ban, unban, getUserList
-  @UseGuards(new RolesGuard(['admin']))
-  @UseGuards(JwtAuthGuard)
-  @Put(':id/ban')
-  async banUser(@Param('id') id: number) {
-    return this.userService.ban(id);
-  }
-  @UseGuards(new RolesGuard(['admin']))
-  @UseGuards(JwtAuthGuard)
-  @Put(':id/unban')
-  async unbanUser(@Param('id') id: number) {
-    return this.userService.unban(id);
-  }
-
-  @UseGuards(new RolesGuard(['admin']))
-  @UseGuards(JwtAuthGuard)
-  @Put('/set-role')
-  async setRole(
-    @Body('id') id: number,
-    @Body('newRole') newRole: string,
-  ) {
-    return this.userService.setRole(id, newRole);
-  }
+  //// Admin-only
   // get user list
   @UseGuards(new RolesGuard(['admin']))
   @UseGuards(JwtAuthGuard)
   @Get('/list')
   async getList(){
     return this.userService.getAllUser();
-  }
+  } 
+  //manage user information (username, email,role,active status)
+  @UseGuards(new RolesGuard(['admin']))
+  @UseGuards(JwtAuthGuard)
+  @Put('/edit-user')
+  async editUser(
+    @Body('id') id: number,
+    @Body('username') newUsername: string,
+    @Body('email') newEmail: string,
+    @Body('isActive') newIsActive: boolean,
+    @Body('newRole') newRole: string,
+  ) {
 
+    return this.userService.editUserProfile(id,newUsername, newEmail, newRole, newIsActive);
+  }
 
 
   //change password
@@ -62,8 +52,7 @@ export class UserController {
   ) {
     return this.userService.changePassword(req.user.id, password, newPassword);
   }
-
-  //edit profile (username, password)
+  //edit profile (username, email)
   @UseGuards(JwtAuthGuard)
   @Put('/edit-profile')
   async editProfile(
@@ -73,15 +62,22 @@ export class UserController {
   ) {
     return this.userService.editProfile(req.user.id,newUsername, newEmail);
   }
-
+  //user get their own profile
   @UseGuards(JwtAuthGuard)
   @Get('/profile')
   async getProfile( @Req() req: any,){
-    return this.userService.getUserProfile(req.id)
+    return this.userService.getUserProfile(req.user.id)
   }
 
+  //// API (temp)
+  //get all users information
   @Get('/')
   async getAll(){
     return this.userService.getAllUser();
+  }
+  // get information of a specific user
+  @Get('/:id')
+  async getUser(@Param('id') id: number){
+    return this.userService.getUserInfo(id);
   }
 }

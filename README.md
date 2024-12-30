@@ -1,17 +1,25 @@
 
-## Description
-
-[Nest] User service of VOU system
-
-## Project setup
-1/ install packages
+# Description
+###[Nest] User service of VOU system
+***
+# Project setup
+### 1/ install packages
 ```bash
 $ npm install
 ```
-2/ create your .env from .env.example
-3/ This service using postgresSQL. If you use another database, edit in database/database.module.ts: "type: 'postgres'" to "type: 'YOUR_DATABASE_TYPE'"
-
-## Compile and run the project
+### 2/ create your .env from .env.example
+```bash
+HOST = localhost
+PORT = 3000
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+DB_NAME=user_service
+JWT_KEY = your_JWT_key
+```
+### 3/ This service using postgresSQL. If you use another database, modify in file database/database.module.ts or setup a cloud Postgre service
+### 4/ Compile and run the project
 
 ```bash
 # development
@@ -24,19 +32,32 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Run tests
+***
+# APIs:
+### APP:
+| STT | Method | URL  | Functionality   | Note                        |
+| :-- | :----- | :--- | :-------------- | :-------------------------- |
+| 1   | GET    | /    | Documentation   |                             |
 
-```bash
-# unit tests
-$ npm run test
+### AUTH:
+| STT | Method | URL           | Functionality         | Note                                   |
+| :-- | :----- | :------------ | :-------------------- | :------------------------------------- |
+| 1   | POST   | auth/register | user register account |                                        |
+| 2   | POST   | auth/login    | user login            |                                        |
+| 3   | POST   | auth/profile  | check profile         | disabled, replaced with user/profile   |
 
-# e2e tests
-$ npm run test:e2e
+### USER:
+| STT | Method | URL                   | Functionality                                  | Note                                    |
+| :-- | :----- | :-------------------- | :------------------------------------------    | :-------------------------------------- |
+| 1   | GET    | user/                 | get all users information                      | no permission req                       |
+| 2   | GET    | user/:id              | get a specific user information                | no permission req                       |
+| 3   | GET    | user/profile          | get user own profile                           | req: login token                        |
+| 4   | PUT    | user/edit-profile     | user edit their information                    | req: login                              |
+| 5   | PUT    | user/change-password  | user change their password                     | req: login                              |
+| 6   | GET    | user/list             | get user **detail** informations               | req: login as admin                     |
+| 7   | PUT    | user/edit-user        | edit user information except password          | req: login as admin, included role & isActive  |
 
-# test coverage
-$ npm run test:cov
-```
-## TASKS LIST:
+# TASKS LIST:
 - [x] Database.
 - [x] create user module & routes.
 - [x] User entity.
@@ -44,7 +65,8 @@ $ npm run test:cov
 - [x] DTOs
 - [x] Authentication. (jwt)
 - [x] Authorization. (admin,partner,user)
-- [ ] Finish UserModule.
+- [x] Finish UserModule.
+- [x] Document
 - [ ] Admin FrontEnd
 - [ ] API module.
 
