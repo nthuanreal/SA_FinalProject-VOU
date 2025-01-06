@@ -46,16 +46,18 @@ $ npm run start:prod
 | 2   | POST   | auth/login    | user login            |                                        |
 | 3   | POST   | auth/profile  | check profile         | disabled, replaced with user/profile   |
 
-### USER:
+### USER_API:
 | STT | Method | URL                   | Functionality                                  | Note                                    |
 | :-- | :----- | :-------------------- | :------------------------------------------    | :-------------------------------------- |
 | 1   | GET    | user/                 | get all users information                      | no permission req                       |
 | 2   | GET    | user/:id              | get a specific user information                | no permission req                       |
-| 3   | GET    | user/profile          | get user own profile                           | req: login token                        |
-| 4   | PUT    | user/edit-profile     | user edit their information                    | req: login                              |
-| 5   | PUT    | user/change-password  | user change their password                     | req: login                              |
-| 6   | GET    | user/list             | get user **detail** informations               | req: login as admin                     |
-| 7   | PUT    | user/edit-user        | edit user information except password          | req: login as admin, included role & isActive  |
+| 3   | GET    | user/partner_id/:id   | get user partner_id                            | no permission req. role != partner => 0 |
+### USER:
+| 1   | GET    | user/profile          | get user own profile                           | req: login. role=partner =>partner_id   |
+| 2   | PUT    | user/edit-profile     | user edit their information                    | req: login                              |
+| 3   | PUT    | user/change-password  | user change their password                     | req: login                              |
+| 4   | GET    | user/list             | get user **detail** informations               | req: login as admin                     |
+| 5   | PUT    | user/edit-user        | edit user information except password          | req: login as admin, included role & isActive  |
 
 # TASKS LIST:
 - [x] Database.
@@ -68,5 +70,5 @@ $ npm run start:prod
 - [x] Finish UserModule.
 - [x] Document
 - [ ] Admin FrontEnd
-- [ ] API module.
+- [x] API module -> included in User
 

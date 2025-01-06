@@ -17,6 +17,9 @@ export class User {
   @Column({ default: 'user' })
   role: string; // 'user', 'partner', 'admin'
 
+  @Column({default: 0})
+  partner_id: number; 
+
   @Column({ default: true })
   isActive: boolean;
 }

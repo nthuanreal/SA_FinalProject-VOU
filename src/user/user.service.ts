@@ -5,6 +5,7 @@ import * as bcrypt from 'bcrypt';
 @Injectable()
 export class UserService {
 
+
   constructor(
     private readonly dbService: DatabaseService,
   ) { }
@@ -36,16 +37,25 @@ export class UserService {
     if (existingEmail && user.id !== existingEmail.id) {
       throw new BadRequestException('Email is already in use.');
     }
-
     return this.dbService.update(userId, { username: newUsername, email: newEmail });
   }
   async getUserProfile(userId: number) {
-    const data = await this.dbService.findByUserID(userId);
-    const { password, isActive, ...user } = data;
-    return user;
+    const user = await this.dbService.findByUserID(userId);
+    if (!user) {
+      throw new NotFoundException('User not found.');
+    }
+    if(user.role != "partner") {
+      const { password, isActive, partner_id, ...data } = user;
+      return data;
+    }
+    else {
+      const { password, isActive, ...data } = user;
+      return data;
+    }
+
   }
   //admin
-  async editUserProfile(userId: number, newUsername: string, newEmail: string, newRole: string, newIsActive: boolean) {
+  async editUserProfile(userId: number, newUsername: string, newEmail: string, newRole: string, newPartnerid: number, newIsActive: boolean) {
     const user = await this.dbService.findByUserID(userId);
     if (!user) {
       throw new NotFoundException('User not found.');
@@ -62,12 +72,20 @@ export class UserService {
     if (!['admin', 'user', 'partner'].includes(newRole)) {
       throw new Error('Invalid role');
     }
-    return this.dbService.update(userId, { username: newUsername, email: newEmail, isActive: newIsActive, role: newRole });
+    return this.dbService.update(userId, { username: newUsername, email: newEmail, isActive: newIsActive, partner_id: newPartnerid,role: newRole });
   }
   async getUserInfo(userId: number) {
     const data = await this.dbService.findByUserID(userId);
     const { password, ...user } = data;
     return user;
+  }
+
+  async getUserPartnerID(id: number) {
+    const data = await this.dbService.findByUserID(id);
+    if (data.role != "partner"){
+      return 0;
+    }
+    return data.partner_id;
   }
   async getAllUser() {
     const data = await this.dbService.findAll();

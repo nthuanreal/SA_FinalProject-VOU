@@ -14,9 +14,11 @@ export class DatabaseService implements OnApplicationBootstrap {
     private userRepository: Repository<User>,
   ) { }
   findAll() {
-    return this.userRepository.find({order: {
-      id: 'ASC', 
-    },});
+    return this.userRepository.find({
+      order: {
+        id: 'ASC',
+      },
+    });
   }
 
   findByUsername(username: string) {
@@ -78,19 +80,20 @@ export class DatabaseService implements OnApplicationBootstrap {
       console.log('Database already seeded.');
       return;
     }
-    const hashedPassword = await bcrypt.hash("password123", 10); 
+    const zero = 0;
+    const hashedPassword = await bcrypt.hash("password123", 10);
     //tao 10 du lieu mau
     const sampleUsers = [
-      { username: 'Alice', email: 'alice@example.com', password: hashedPassword, role: 'user', isActive: true },
-      { username: 'Bob', email: 'bob@example.com', password: hashedPassword, role: 'admin', isActive: true },
-      { username: 'Charlie', email: 'charlie@example.com', password: hashedPassword, role: 'partner', isActive: false },
-      { username: 'Daisy', email: 'daisy@example.com', password: hashedPassword, role: 'user', isActive: true },
-      { username: 'Edward', email: 'edward@example.com', password: hashedPassword, role: 'user', isActive: true },
-      { username: 'Fiona', email: 'fiona@example.com', password: hashedPassword, role: 'partner', isActive: true },
-      { username: 'George', email: 'george@example.com', password: hashedPassword, role: 'user', isActive: true },
-      { username: 'Hannah', email: 'hannah@example.com', password: hashedPassword, role: 'user', isActive: true },
-      { username: 'Ivan', email: 'ivan@example.com', password: hashedPassword, role: 'partner', isActive: false },
-      { username: 'Julia', email: 'julia@example.com', password: hashedPassword, role: 'user', isActive: true },
+      { username: 'Alice', email: 'alice@example.com', password: hashedPassword, role: 'user', partner_id: zero , isActive: true },
+      { username: 'Bob', email: 'bob@example.com', password: hashedPassword, role: 'admin', partner_id: zero, isActive: true },
+      { username: 'Charlie', email: 'charlie@example.com', password: hashedPassword, role: 'partner', partner_id:1001, isActive: false },
+      { username: 'Daisy', email: 'daisy@example.com', password: hashedPassword, role: 'user', partner_id: zero, isActive: true },
+      { username: 'Edward', email: 'edward@example.com', password: hashedPassword, role: 'user', partner_id: zero , isActive: true },
+      { username: 'Fiona', email: 'fiona@example.com', password: hashedPassword, role: 'partner', partner_id: 1001, isActive: true },
+      { username: 'George', email: 'george@example.com', password: hashedPassword, role: 'user', partner_id: zero, isActive: true },
+      { username: 'Hannah', email: 'hannah@example.com', password: hashedPassword, role: 'user', partner_id: zero, isActive: true },
+      { username: 'Ivan', email: 'ivan@example.com', password: hashedPassword, role: 'partner', partner_id: 1002, isActive: false },
+      { username: 'Julia', email: 'julia@example.com', password: hashedPassword, role: 'user', partner_id: zero, isActive: true },
     ];
     await this.userRepository.save(sampleUsers);
     console.log('Database seeded with 10 sample users.');

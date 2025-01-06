@@ -34,11 +34,13 @@ export class UserController {
     @Body('id') id: number,
     @Body('username') newUsername: string,
     @Body('email') newEmail: string,
+    @Body('Role') newRole: string,
+    @Body('partner_id') newPartnerid,
     @Body('isActive') newIsActive: boolean,
-    @Body('newRole') newRole: string,
+
   ) {
 
-    return this.userService.editUserProfile(id,newUsername, newEmail, newRole, newIsActive);
+    return this.userService.editUserProfile(id,newUsername, newEmail, newRole, newPartnerid, newIsActive);
   }
 
 
@@ -79,5 +81,10 @@ export class UserController {
   @Get('/:id')
   async getUser(@Param('id') id: number){
     return this.userService.getUserInfo(id);
+  }
+
+  @Get('partner_id/:id')
+  async getUserPartnerID(@Param('id') id: number){
+    return this.userService.getUserPartnerID(id);
   }
 }
