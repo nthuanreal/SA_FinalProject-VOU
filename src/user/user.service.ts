@@ -76,20 +76,32 @@ export class UserService {
   }
   async getUserInfo(userId: number) {
     const data = await this.dbService.findByUserID(userId);
+    if (!data) {
+      throw new NotFoundException('User not found.');
+    }
     const { password, ...user } = data;
     return user;
   }
-
   async getUserPartnerID(id: number) {
     const data = await this.dbService.findByUserID(id);
-    if (data.role != "partner"){
-      return 0;
+    if (!data) {
+      throw new NotFoundException('User not found.');
     }
-    return data.partner_id;
+    if (data.role != "partner"){
+      return {partner_id: 0};
+    }
+    return {partner_id: data.partner_id};
   }
+
   async getAllUser() {
-    const data = await this.dbService.findAll();
-    const Users = data.map(({ password, ...rest }) => rest);
-    return Users;
+    try {
+      const data = await this.dbService.findAll();
+      const Users = data.map(({ password, ...rest }) => rest);
+      return Users;
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      throw new Error('Unable to fetch users at this time.');
+    }
   }
+  
 }

@@ -258,8 +258,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/database/database.service.ts:45</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/database/database.service.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -295,8 +295,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="33"
-                                    class="link-to-prism">src/database/database.service.ts:33</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/database/database.service.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -399,8 +399,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/database/database.service.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/database/database.service.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -466,8 +466,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="25"
-                                    class="link-to-prism">src/database/database.service.ts:25</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/database/database.service.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -533,8 +533,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="22"
-                                    class="link-to-prism">src/database/database.service.ts:22</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="24"
+                                    class="link-to-prism">src/database/database.service.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -602,8 +602,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="100"
-                                    class="link-to-prism">src/database/database.service.ts:100</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/database/database.service.ts:103</a></div>
                         </td>
                     </tr>
 
@@ -639,8 +639,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="42"
-                                    class="link-to-prism">src/database/database.service.ts:42</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="44"
+                                    class="link-to-prism">src/database/database.service.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -708,8 +708,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="74"
-                                    class="link-to-prism">src/database/database.service.ts:74</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/database/database.service.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -745,8 +745,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/database/database.service.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/database/database.service.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -826,9 +826,11 @@ export class DatabaseService implements OnApplicationBootstrap {
     private userRepository: Repository&lt;User&gt;,
   ) { }
   findAll() {
-    return this.userRepository.find({order: {
-      id: &#x27;ASC&#x27;, 
-    },});
+    return this.userRepository.find({
+      order: {
+        id: &#x27;ASC&#x27;,
+      },
+    });
   }
 
   findByUsername(username: string) {
@@ -890,19 +892,20 @@ export class DatabaseService implements OnApplicationBootstrap {
       console.log(&#x27;Database already seeded.&#x27;);
       return;
     }
-    const hashedPassword &#x3D; await bcrypt.hash(&quot;password123&quot;, 10); 
+    const zero &#x3D; 0;
+    const hashedPassword &#x3D; await bcrypt.hash(&quot;password123&quot;, 10);
     //tao 10 du lieu mau
     const sampleUsers &#x3D; [
-      { username: &#x27;Alice&#x27;, email: &#x27;alice@example.com&#x27;, password: hashedPassword, role: &#x27;user&#x27;, isActive: true },
-      { username: &#x27;Bob&#x27;, email: &#x27;bob@example.com&#x27;, password: hashedPassword, role: &#x27;admin&#x27;, isActive: true },
-      { username: &#x27;Charlie&#x27;, email: &#x27;charlie@example.com&#x27;, password: hashedPassword, role: &#x27;partner&#x27;, isActive: false },
-      { username: &#x27;Daisy&#x27;, email: &#x27;daisy@example.com&#x27;, password: hashedPassword, role: &#x27;user&#x27;, isActive: true },
-      { username: &#x27;Edward&#x27;, email: &#x27;edward@example.com&#x27;, password: hashedPassword, role: &#x27;user&#x27;, isActive: true },
-      { username: &#x27;Fiona&#x27;, email: &#x27;fiona@example.com&#x27;, password: hashedPassword, role: &#x27;partner&#x27;, isActive: true },
-      { username: &#x27;George&#x27;, email: &#x27;george@example.com&#x27;, password: hashedPassword, role: &#x27;user&#x27;, isActive: true },
-      { username: &#x27;Hannah&#x27;, email: &#x27;hannah@example.com&#x27;, password: hashedPassword, role: &#x27;user&#x27;, isActive: true },
-      { username: &#x27;Ivan&#x27;, email: &#x27;ivan@example.com&#x27;, password: hashedPassword, role: &#x27;partner&#x27;, isActive: false },
-      { username: &#x27;Julia&#x27;, email: &#x27;julia@example.com&#x27;, password: hashedPassword, role: &#x27;user&#x27;, isActive: true },
+      { username: &#x27;Alice&#x27;, email: &#x27;alice@example.com&#x27;, password: hashedPassword, role: &#x27;user&#x27;, partner_id: zero , isActive: true },
+      { username: &#x27;Bob&#x27;, email: &#x27;bob@example.com&#x27;, password: hashedPassword, role: &#x27;admin&#x27;, partner_id: zero, isActive: true },
+      { username: &#x27;Charlie&#x27;, email: &#x27;charlie@example.com&#x27;, password: hashedPassword, role: &#x27;partner&#x27;, partner_id:1001, isActive: false },
+      { username: &#x27;Daisy&#x27;, email: &#x27;daisy@example.com&#x27;, password: hashedPassword, role: &#x27;user&#x27;, partner_id: zero, isActive: true },
+      { username: &#x27;Edward&#x27;, email: &#x27;edward@example.com&#x27;, password: hashedPassword, role: &#x27;user&#x27;, partner_id: zero , isActive: true },
+      { username: &#x27;Fiona&#x27;, email: &#x27;fiona@example.com&#x27;, password: hashedPassword, role: &#x27;partner&#x27;, partner_id: 1001, isActive: true },
+      { username: &#x27;George&#x27;, email: &#x27;george@example.com&#x27;, password: hashedPassword, role: &#x27;user&#x27;, partner_id: zero, isActive: true },
+      { username: &#x27;Hannah&#x27;, email: &#x27;hannah@example.com&#x27;, password: hashedPassword, role: &#x27;user&#x27;, partner_id: zero, isActive: true },
+      { username: &#x27;Ivan&#x27;, email: &#x27;ivan@example.com&#x27;, password: hashedPassword, role: &#x27;partner&#x27;, partner_id: 1002, isActive: false },
+      { username: &#x27;Julia&#x27;, email: &#x27;julia@example.com&#x27;, password: hashedPassword, role: &#x27;user&#x27;, partner_id: zero, isActive: true },
     ];
     await this.userRepository.save(sampleUsers);
     console.log(&#x27;Database seeded with 10 sample users.&#x27;);

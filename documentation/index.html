@@ -162,7 +162,7 @@ $ npm run start:prod</code></pre></div><hr>
 </tr>
 </tbody>
 </table>
-<h3>USER:</h3>
+<h3>USER_API:</h3>
 <table class="table table-bordered compodoc-table">
 <thead>
 <tr>
@@ -191,40 +191,18 @@ $ npm run start:prod</code></pre></div><hr>
 <tr>
 <td align="left">3</td>
 <td align="left">GET</td>
-<td align="left">user/profile</td>
-<td align="left">get user own profile</td>
-<td align="left">req: login token</td>
-</tr>
-<tr>
-<td align="left">4</td>
-<td align="left">PUT</td>
-<td align="left">user/edit-profile</td>
-<td align="left">user edit their information</td>
-<td align="left">req: login</td>
-</tr>
-<tr>
-<td align="left">5</td>
-<td align="left">PUT</td>
-<td align="left">user/change-password</td>
-<td align="left">user change their password</td>
-<td align="left">req: login</td>
-</tr>
-<tr>
-<td align="left">6</td>
-<td align="left">GET</td>
-<td align="left">user/list</td>
-<td align="left">get user <strong>detail</strong> informations</td>
-<td align="left">req: login as admin</td>
-</tr>
-<tr>
-<td align="left">7</td>
-<td align="left">PUT</td>
-<td align="left">user/edit-user</td>
-<td align="left">edit user information except password</td>
-<td align="left">req: login as admin, included role &amp; isActive</td>
+<td align="left">user/partner_id/:id</td>
+<td align="left">get user partner_id</td>
+<td align="left">no permission req. role != partner =&gt; 0</td>
 </tr>
 </tbody>
 </table>
+<h3>USER:</h3>
+<p>| 1   | GET    | user/profile          | get user own profile                           | req: login. role=partner =&gt;partner_id   |
+| 2   | PUT    | user/edit-profile     | user edit their information                    | req: login                              |
+| 3   | PUT    | user/change-password  | user change their password                     | req: login                              |
+| 4   | GET    | user/list             | get user <strong>detail</strong> informations               | req: login as admin                     |
+| 5   | PUT    | user/edit-user        | edit user information except password          | req: login as admin, included role &amp; isActive  |</p>
 <h1>TASKS LIST:</h1>
 <ul>
 <li><input checked="" disabled="" type="checkbox"> Database.</li>
@@ -237,7 +215,7 @@ $ npm run start:prod</code></pre></div><hr>
 <li><input checked="" disabled="" type="checkbox"> Finish UserModule.</li>
 <li><input checked="" disabled="" type="checkbox"> Document</li>
 <li><input disabled="" type="checkbox"> Admin FrontEnd</li>
-<li><input disabled="" type="checkbox"> API module.</li>
+<li><input checked="" disabled="" type="checkbox"> API module -&gt; included in User</li>
 </ul>
 
 

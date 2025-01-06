@@ -157,6 +157,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#getUserPartnerID" >getUserPartnerID</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getUserProfile" >getUserProfile</a>
                             </li>
                         </ul>
@@ -247,8 +251,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="12"
-                                    class="link-to-prism">src/user/user.service.ts:12</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="13"
+                                    class="link-to-prism">src/user/user.service.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -340,8 +344,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/user/user.service.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/user/user.service.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -426,15 +430,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>editUserProfile(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, newUsername: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, newEmail: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, newRole: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, newIsActive: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                    <code>editUserProfile(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, newUsername: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, newEmail: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, newRole: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, newPartnerid: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, newIsActive: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/user/user.service.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/user/user.service.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -503,6 +507,18 @@
 
                                         </tr>
                                         <tr>
+                                                <td>newPartnerid</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
                                                 <td>newIsActive</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
@@ -550,8 +566,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="72"
-                                    class="link-to-prism">src/user/user.service.ts:72</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/user/user.service.ts:90</a></div>
                         </td>
                     </tr>
 
@@ -589,8 +605,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="67"
-                                    class="link-to-prism">src/user/user.service.ts:67</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/user/user.service.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -612,6 +628,75 @@
                                     <tbody>
                                         <tr>
                                                 <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserPartnerID"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getUserPartnerID</b></span>
+                        <a href="#getUserPartnerID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUserPartnerID(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/user/user.service.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                             </td>
@@ -718,6 +803,7 @@ import * as bcrypt from &#x27;bcrypt&#x27;;
 @Injectable()
 export class UserService {
 
+
   constructor(
     private readonly dbService: DatabaseService,
   ) { }
@@ -749,16 +835,25 @@ export class UserService {
     if (existingEmail &amp;&amp; user.id !&#x3D;&#x3D; existingEmail.id) {
       throw new BadRequestException(&#x27;Email is already in use.&#x27;);
     }
-
     return this.dbService.update(userId, { username: newUsername, email: newEmail });
   }
   async getUserProfile(userId: number) {
-    const data &#x3D; await this.dbService.findByUserID(userId);
-    const { password, isActive, ...user } &#x3D; data;
-    return user;
+    const user &#x3D; await this.dbService.findByUserID(userId);
+    if (!user) {
+      throw new NotFoundException(&#x27;User not found.&#x27;);
+    }
+    if(user.role !&#x3D; &quot;partner&quot;) {
+      const { password, isActive, partner_id, ...data } &#x3D; user;
+      return data;
+    }
+    else {
+      const { password, isActive, ...data } &#x3D; user;
+      return data;
+    }
+
   }
   //admin
-  async editUserProfile(userId: number, newUsername: string, newEmail: string, newRole: string, newIsActive: boolean) {
+  async editUserProfile(userId: number, newUsername: string, newEmail: string, newRole: string, newPartnerid: number, newIsActive: boolean) {
     const user &#x3D; await this.dbService.findByUserID(userId);
     if (!user) {
       throw new NotFoundException(&#x27;User not found.&#x27;);
@@ -775,12 +870,20 @@ export class UserService {
     if (![&#x27;admin&#x27;, &#x27;user&#x27;, &#x27;partner&#x27;].includes(newRole)) {
       throw new Error(&#x27;Invalid role&#x27;);
     }
-    return this.dbService.update(userId, { username: newUsername, email: newEmail, isActive: newIsActive, role: newRole });
+    return this.dbService.update(userId, { username: newUsername, email: newEmail, isActive: newIsActive, partner_id: newPartnerid,role: newRole });
   }
   async getUserInfo(userId: number) {
     const data &#x3D; await this.dbService.findByUserID(userId);
     const { password, ...user } &#x3D; data;
     return user;
+  }
+
+  async getUserPartnerID(id: number) {
+    const data &#x3D; await this.dbService.findByUserID(id);
+    if (data.role !&#x3D; &quot;partner&quot;){
+      return 0;
+    }
+    return data.partner_id;
   }
   async getAllUser() {
     const data &#x3D; await this.dbService.findAll();
