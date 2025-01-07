@@ -2,7 +2,7 @@ import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { Client } from 'pg';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from '../user/user.entity';
+import { User } from 'src/user/user.entity';
 import * as bcrypt from 'bcrypt';
 
 require('dotenv').config();
