@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Cấp quyền truy cập cổng cho ứng dụng (theo cổng bạn đã cấu hình trong app)
-EXPOSE 3000
+EXPOSE  ${PORT}
 
 # Lệnh khởi chạy ứng dụng
 CMD ["npm", "start"]
