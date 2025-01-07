@@ -1,5 +1,6 @@
 services:
   app:
+    image: nthuanreal/user-service
     build:
       context: .
       dockerfile: Dockerfile
