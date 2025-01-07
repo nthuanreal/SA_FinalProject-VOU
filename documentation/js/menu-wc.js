@@ -124,13 +124,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/DatabaseModule.html" data-type="entity-link" >DatabaseModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#injectables-links-module-DatabaseModule-28752212083a8dd1c3df8cf9b86955a399867726a8284f582fb3fc237ba63f84a83a33e4993d30f347aa0b255f02b5d14950545a2a956f010500dddd1f1d1601"' : 'data-bs-target="#xs-injectables-links-module-DatabaseModule-28752212083a8dd1c3df8cf9b86955a399867726a8284f582fb3fc237ba63f84a83a33e4993d30f347aa0b255f02b5d14950545a2a956f010500dddd1f1d1601"' }>
+                                        'data-bs-target="#injectables-links-module-DatabaseModule-60747f612f82966e271ffd6f48d6c59a2ce9366bbc29f29329059599dfab137a37a476e2a4560d7b4265da7fe8b2ab488470fe0cef23e037e8c93030bbaf53f1"' : 'data-bs-target="#xs-injectables-links-module-DatabaseModule-60747f612f82966e271ffd6f48d6c59a2ce9366bbc29f29329059599dfab137a37a476e2a4560d7b4265da7fe8b2ab488470fe0cef23e037e8c93030bbaf53f1"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-DatabaseModule-28752212083a8dd1c3df8cf9b86955a399867726a8284f582fb3fc237ba63f84a83a33e4993d30f347aa0b255f02b5d14950545a2a956f010500dddd1f1d1601"' :
-                                        'id="xs-injectables-links-module-DatabaseModule-28752212083a8dd1c3df8cf9b86955a399867726a8284f582fb3fc237ba63f84a83a33e4993d30f347aa0b255f02b5d14950545a2a956f010500dddd1f1d1601"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-DatabaseModule-60747f612f82966e271ffd6f48d6c59a2ce9366bbc29f29329059599dfab137a37a476e2a4560d7b4265da7fe8b2ab488470fe0cef23e037e8c93030bbaf53f1"' :
+                                        'id="xs-injectables-links-module-DatabaseModule-60747f612f82966e271ffd6f48d6c59a2ce9366bbc29f29329059599dfab137a37a476e2a4560d7b4265da7fe8b2ab488470fe0cef23e037e8c93030bbaf53f1"' }>
                                         <li class="link">
                                             <a href="injectables/DatabaseService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DatabaseService</a>
                                         </li>

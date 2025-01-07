@@ -814,8 +814,8 @@
 import { Client } from &#x27;pg&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
-import { User } from &#x27;../user/user.entity&#x27;;
-import * as bcrypt from &#x27;bcrypt&#x27;;
+import { User } from &#x27;src/user/user.entity&#x27;;
+import * as bcrypt from &#x27;bcryptjs&#x27;;
 
 require(&#x27;dotenv&#x27;).config();
 

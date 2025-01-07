@@ -235,8 +235,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/user/user.controller.ts:50</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/user/user.controller.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -337,8 +337,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="60"
-                                    class="link-to-prism">src/user/user.controller.ts:60</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/user/user.controller.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -576,8 +576,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="77"
-                                    class="link-to-prism">src/user/user.controller.ts:77</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/user/user.controller.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -673,8 +673,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="70"
-                                    class="link-to-prism">src/user/user.controller.ts:70</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/user/user.controller.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -750,8 +750,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="82"
-                                    class="link-to-prism">src/user/user.controller.ts:82</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/user/user.controller.ts:81</a></div>
                         </td>
                     </tr>
 
@@ -827,8 +827,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="87"
-                                    class="link-to-prism">src/user/user.controller.ts:87</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="86"
+                                    class="link-to-prism">src/user/user.controller.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -914,10 +914,9 @@ export class UserController {
     @Body(&#x27;id&#x27;) id: number,
     @Body(&#x27;username&#x27;) newUsername: string,
     @Body(&#x27;email&#x27;) newEmail: string,
-    @Body(&#x27;Role&#x27;) newRole: string,
+    @Body(&#x27;role&#x27;) newRole: string,
     @Body(&#x27;partner_id&#x27;) newPartnerid,
     @Body(&#x27;isActive&#x27;) newIsActive: boolean,
-
   ) {
 
     return this.userService.editUserProfile(id,newUsername, newEmail, newRole, newPartnerid, newIsActive);
