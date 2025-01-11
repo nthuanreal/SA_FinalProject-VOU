@@ -40,3 +40,361 @@
 .read-the-docs {
   color: #888;
 }
+
+.app-container {
+  display: flex;
+  
+}
+
+.dashboard-container {
+  display: flex;
+}
+.dashboard-title{
+	
+	margin: 20px;
+	font-size: 20;
+	color: aliceblue;
+}
+
+.sidebar {
+  position: absolute; /* Hoặc fixed nếu muốn cố định toàn màn hình */
+  top: 0;
+  left: 0;
+  width: 15%;
+  min-width: 200px;
+  border: #495057;
+  opacity: 80%;
+  background: linear-gradient(to bottom, #df1c74, #e0aaff);
+  color: white;
+  padding: 20px;
+  height: 100vh;
+}
+
+.sidebar button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background: none;
+  color: white;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sidebar button.active, .sidebar button:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.904); /* Hiệu ứng nổi bật */
+  font-weight: bold;  
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.sidebar button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background: none;
+  color: white;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sidebar button.btn-signout {
+  background-color: #ff4d4f; 
+  align-self: center;
+  color: white;
+  border: none; 
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 16px; 
+  font-weight: bold; 
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out; 
+  bottom: 5%; 
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.cards {	
+  display: flex;
+  gap: 20px;
+}
+
+.card {
+	width: 100%;
+	min-width: 200px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-signout {
+  background-color: #ff4d4f; /* Màu đỏ nổi bật */
+  color: white; /* Màu chữ trắng */
+  border: none; /* Xóa viền */
+  padding: 10px 20px; /* Khoảng cách trong nút */
+  margin: 10px;
+  border-radius: 25px; /* Bo tròn các góc */
+  font-size: 16px; /* Kích thước chữ */
+  font-weight: bold; /* Chữ đậm */
+  cursor: pointer; /* Con trỏ thành dạng "tay" khi hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+  transition: all 0.3s ease-in-out; /* Hiệu ứng chuyển đổi mượt */
+}
+
+/*  */
+	*, *:after, *:before {
+	    margin: 0;
+	    padding: 0;
+
+	    box-sizing: border-box;
+	    -webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+
+	    -webkit-text-size-adjust: 100%;
+	    -ms-text-size-adjust: 100%;
+
+	    text-rendering: optimizeLegibility;
+	    -webkit-font-smoothing: antialiased;
+	    font-smooth: always;
+
+	    -webkit-user-select: none;
+	    -khtml-user-select: none;
+	    -moz-user-select: none;
+	    -ms-user-select: none;
+	    user-select: none;
+
+	    font-family: inherit;
+
+	    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	}
+
+
+
+
+	.profile-card{
+		width: 360px;
+		border-radius: 15px;
+		overflow: hidden;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+		position: relative;
+		margin: auto;
+		background: rgba(219, 166, 21, 0.707);
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+
+
+	.profile-card header{
+		display: block;
+		position: relative;
+		background: rgba(255,255,255,1);
+		text-align: center;
+		padding: 30px 0 20px;
+		z-index: 1;
+		overflow: hidden;
+	}
+
+
+
+	.profile-card header:after{
+		content: "";
+		position: absolute;
+		bottom: -1px;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		background-image: linear-gradient(
+		    to bottom,
+		    rgba(255, 255, 255, 0) 0%,
+		    rgba(255, 255, 255, 1) 100%
+		);
+	}
+
+	.profile-card header img{
+		border-radius: 100%;
+		overflow: hidden;
+		width: 150px;
+		/*border: 1px solid rgba(255,255,255,.5);*/
+		box-shadow: 0 1px 0 rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.1);
+	}
+
+	.profile-card header h1{
+		font-weight: 200;
+		font-size: 42px;
+		color: #444;
+		letter-spacing: -3px;
+		margin: 0;
+		padding: 0;
+	}
+
+	.profile-card header h2{
+		font-weight: 400;
+		font-size: 14px;
+		color: #666;
+		letter-spacing: .5px;
+		margin: 0;
+		padding: 0;
+	}
+
+	.profile-card .profile-bio{
+		padding: 0 30px;
+		text-align: center;
+		color: #888;
+	}
+
+	.profile-card .profile-social-links{
+		display: table;
+		width: 70%;
+		margin: 20px auto;
+	}
+
+	.profile-card .profile-social-links li{
+		display: table-cell;
+		width: 33.3333333333333333%
+	}
+
+	.profile-card .profile-social-links li a{
+		display: block;
+		text-align: center;
+		padding: 10px;
+		margin: 0 10px;
+		border-radius: 100%;
+		-webkit-transition: box-shadow 0.2s;
+		-moz-transition: box-shadow 0.2s;
+		-o-transition: box-shadow 0.2s;
+		transition: box-shadow 0.2s;
+	}
+	.profile-card .profile-social-links li a:hover{
+		box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24);
+	}
+
+	.profile-card .profile-social-links li a:active{
+		box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+	}
+
+	.profile-card .profile-social-links li a img{
+		width: 100%;
+		display: block;
+	}
+
+	/*  */
+	button.edit-user {
+		background-color: rgba(0, 98, 255, 0.575) ;
+		margin:0;
+		padding: 5px;
+		font-size: 8;
+
+	}
+
+	button.save-user {
+		margin:0;
+		padding: 5px;
+		padding: 5px;
+		font-size: 8;
+
+	}
+	button.cancel-user {
+		background-color: rgba(255, 72, 0, 0.575) ;
+		margin:5px;
+		padding: 5px;
+		font-size: 8;
+
+	}
+	.double-button{
+		display:flex;
+	}
+	tbody{
+		color: #000000;
+	}
+
+	table.table{
+		background-color: #faf8f8;
+		border: 2px solid  #000000 ;
+
+	}
+	tr{
+		border: 2px solid  #000000 ;
+	}
+	th{
+		border: 2px solid  #000000 ;
+	}
+
+	.modal {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.5);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	  }
+	  
+	  .modal-content {
+		background: white;
+		padding: 20px;
+		border-radius: 10px;
+		position: relative;
+	  }
+	  
+	  .close-button {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		background: none;
+		border: none;
+		font-size: 20px;
+		cursor: pointer;
+	  }
+	  
+	  .pagination {
+		margin-top: 10px;
+		display: flex;
+		justify-content: center;
+		gap: 5px;
+	  }
+	  
+	  .pagination button {
+		padding: 5px 10px;
+		border: 1px solid #ccc;
+		background: white;
+		cursor: pointer;
+	  }
+	  
+	  .pagination button.active {
+		background: #007bff;
+		color: white;
+		border-color: #007bff;
+	  }
+
+/*  */
+.edit-info{
+	min-width: 150px;
+	margin:0;
+	padding:0;
+	color: black;
+}
+.user-info{
+	min-width: 200px;
+}

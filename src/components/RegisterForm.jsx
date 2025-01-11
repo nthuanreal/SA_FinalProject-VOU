@@ -19,23 +19,43 @@ const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleRegister}>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit">Register</button>
-    </form>
+    <>
+    <div className="glass-container">
+      <div className="login-box">
+        <h2 class = "form-title">Register</h2>
+        <form onSubmit={handleRegister}>
+
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            maxLength={50} 
+          />
+
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            maxLength={50} 
+          />
+
+          <div className="options">
+          </div>
+          <button type="submit">Register</button>
+
+          <p>Already have an account? <a className="login-register-link" href="/login" id="register">Login</a>.</p>
+        </form>
+      </div>
+    </div>
+  </>
   );
 };
 

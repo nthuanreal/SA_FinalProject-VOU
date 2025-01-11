@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage.jsx";
 import ProfilePage from "../pages/ProfilePage";
-import ManagePage from "../pages/ManagePage";
-import { getRoleFromToken } from "../services/auth";
+import DashboardPage from "../pages/DashboardPage";
+import { getRoleFromToken, getToken, removeToken } from "../services/auth";
 
 const ProtectedRoute = ({ children, roles }) => {
   const userRole = getRoleFromToken();
@@ -12,20 +12,45 @@ const ProtectedRoute = ({ children, roles }) => {
   return children;
 };
 
+const AuthRoute = ({children}) => {
+  const token = getToken();
+    if (token) {
+      const userRole = getRoleFromToken();
+      if (!userRole) {
+        removeToken();
+        return <Navigate to="/login" />;
+      }
+      if (userRole =="admin") 
+        return <Navigate to="/dashboard" />;
+      else
+        return <Navigate to="/profile" />
+    }
+  return children;
+};
+
 export default function AppRoutes() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={
+          <AuthRoute>
+            <LoginPage />
+          </AuthRoute>
+
+        } />
+        <Route path="/register" element={
+          <AuthRoute>
+            <RegisterPage />
+          </AuthRoute>
+        } />
         <Route path="/profile" element={
           <ProtectedRoute roles={['user', 'partner', 'admin']}>
             <ProfilePage />
           </ProtectedRoute>
         } />
-        <Route path="/manage" element={
+        <Route path="/dashboard" element={
           <ProtectedRoute roles={['admin']}>
-            <ManagePage/>
+            <DashboardPage/>
           </ProtectedRoute>
         } />
         <Route path="*" element={<Navigate to="/login" />} />
