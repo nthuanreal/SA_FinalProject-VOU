@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/gin-gonic/gin"
 
 	"promotion_service/config"
@@ -25,11 +23,12 @@ func main() {
 	var (
 		gormRepo = repository.NewRepository(gormDb)
 		service  = service.NewService(nil, gormRepo)
-		address  = fmt.Sprintf("%s:%s", cfg.Server.Host, cfg.Server.HTTPPort)
-		handler  = handler.NewHandler(service)
+		// address  = fmt.Sprintf("%s:%s", cfg.Server.Host, cfg.Server.HTTPPort)
+		handler = handler.NewHandler(service)
 	)
 
 	router := gin.Default()
+	router.SetTrustedProxies([]string{"127.0.0.1", "::1"})
 
 	// Add CORS middleware
 	router.Use(corsMiddleware())
@@ -49,7 +48,7 @@ func main() {
 	})
 	router.POST("/api/v1/login", handler.Login)
 
-	router.Run(address)
+	router.Run("0.0.0.0:3001")
 }
 
 func corsMiddleware() gin.HandlerFunc {

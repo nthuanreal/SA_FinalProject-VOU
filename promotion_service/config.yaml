@@ -1,5 +1,5 @@
 server:
-  host: "0.0.0.0" 
+  host: "localhost" 
   httpport: "3001"
 
 database:
