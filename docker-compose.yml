@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: promotion-service
+    ports:
+      - "3306:3306"
+    networks:
+      - app-net
+
+  promotion:
+    build: .
+    command: ["/wait-for-it.sh", "db:3306", "--", "/promotion_service"]
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: 123456
+      DB_NAME: promotion
+    ports:
+      - "4000:4000"
+      - "8080:8080"
+    networks:
+      - app-net
+    deploy:
+      replicas: 1 
+
+networks:
+  app-net:
+    driver: bridge

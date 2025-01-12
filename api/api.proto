@@ -1,0 +1,160 @@
+syntax = "proto3";
+
+package promotion_service.api;
+
+option go_package = "promotion_service.api";
+
+import "third_party/google/api/annotations.proto";
+
+service PromotionService {
+    rpc HealthCheck (Empty) returns (Empty) {
+        option (google.api.http) = {
+            get: "/api/v1/health-check"
+        };
+    }
+
+    rpc Login(LoginRequest) returns (LoginResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/login"
+            body: "*"
+        };
+    }
+
+    rpc GetListEvents (GetListEventsRequest) returns (GetListEventsResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/get-events"
+            body: "*"
+        };
+    }
+
+    rpc UpsertEvent (UpsertEventRequest) returns (UpsertEventResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/events"
+            body: "*"
+        };
+    }
+
+    rpc GrantPoints (GrantPointsRequest) returns (GrantPointsResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/points"
+            body: "*"
+        };
+    }
+
+    rpc RedeemVouchers (RedeemVouchersRequest) returns (RedeemVouchersResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/vouchers/redeem"
+            body: "*"
+        };
+    }
+}
+
+message LoginRequest {
+    string username = 1 [json_name = "username"];
+    string password = 2 [json_name = "password"];
+}
+
+message LoginResponse {
+    int32 code = 1 [json_name = "code"];
+    string message = 2 [json_name = "message"];
+    string access_token = 3 [json_name = "access_token"];
+    int64 partner_id = 4 [json_name = "partner_id"];
+}
+
+message Event {
+    int64 id = 1;
+    string name = 2;
+    string image = 3;
+    int32 vouchers_quantity = 4;
+    int64 from_date = 5;
+    int64 to_date = 6;
+    string game_id = 7;
+    string game_name = 8;
+}
+
+message Voucher {
+    int64 id = 1;
+    string code = 2;
+    int64 price = 3;
+    string currency = 4;
+    string status = 5;
+    int64 expired_at = 6;
+}
+
+message GetListEventsRequest {
+    int64 partner_id = 1 [json_name = "partner_id"];
+    string name = 2 [json_name = "name"];
+    int64 from_date = 3 [json_name = "from_date"];
+    int64 to_date = 4 [json_name = "to_date"];
+    int32 current_page = 5 [json_name = "current_page"];
+    int32 page_size = 6 [json_name = "page_size"];
+}
+
+message GetListEventsResponse {
+    int32 code = 1 [json_name = "code"];
+    string message = 2 [json_name = "message"];
+    Data data = 3 [json_name = "data"];
+    message Data {
+        int32 total_records = 1 [json_name = "total_records"];
+        int32 page_size = 2 [json_name = "page_size"];
+        int32 current_page = 3 [json_name = "current_page"];
+        repeated Event events = 4 [json_name = "events"];
+    }
+}
+
+message UpsertEventRequest {
+    int64 id = 1 [json_name = "id"];
+    string name = 2 [json_name = "name"];
+    string image = 3 [json_name = "image"];
+    int32 vouchers_quantity = 4 [json_name = "vouchers_quantity"];
+    int64 from_date = 5 [json_name = "from_date"];
+    int64 to_date = 6 [json_name = "to_date"];
+    string game_id = 7 [json_name = "game_id"];
+    int64 partner_id = 8 [json_name = "partner_id"];
+}
+
+message UpsertEventResponse {
+    int32 code = 1 [json_name = "code"];
+    string message = 2 [json_name = "message"];
+    Event data = 3 [json_name = "data"];
+}
+
+
+message GrantPointsRequest {
+    int64 user_id = 1 [json_name = "user_id"];
+    int64 event_id = 2 [json_name = "event_id"];
+    string game_id = 3 [json_name = "game_id"];
+    int64 points = 4 [json_name = "points"];
+}
+
+message GrantPointsResponse {
+    int32 code = 1 [json_name = "code"];
+    string message = 2 [json_name = "message"];
+}
+
+message RedeemVouchersRequest {
+    int64 user_id = 1 [json_name = "user_id"];
+    int64 event_id = 2 [json_name = "event_id"];
+    string game_id = 3 [json_name = "game_id"];
+    int64 points = 4 [json_name = "points"];
+}
+
+message RedeemVouchersResponse {
+    int32 code = 1 [json_name = "code"];
+    string message = 2 [json_name = "message"];
+    repeated Voucher data = 3 [json_name = "data"];
+}
+
+message Empty {}
+
+message Game {
+    string id = 1;
+    string name = 2;
+    string image = 3;
+}
+
+message GetListGameResponse {
+    int32 code = 1 [json_name = "code"];
+    string message = 2 [json_name = "message"];
+    repeated Game data = 3 [json_name = "data"];
+}
