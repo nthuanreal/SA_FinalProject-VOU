@@ -6,6 +6,7 @@ class Event {
   final DateTime startTime;
   final DateTime endTime;
   final int totalPoint;
+//  final List<bool> game;
   Event({
     required this.id,
     required this.title,
@@ -14,6 +15,7 @@ class Event {
     required this.startTime,
     required this.endTime,
     required this.totalPoint,
+//    required this.game,
   });
 
   factory Event.fromJson(Map<String, dynamic> json) {

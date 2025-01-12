@@ -1,10 +1,14 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:vou/models/user_model.dart'; // Your User model file
+import 'package:vou/models/user_model.dart';
 import 'package:flutter/foundation.dart';
+import 'package:provider/provider.dart';
+
 
 class UserService {
-  final String apiUrl = 'https://api.com/users';
+  final String apiUrl = 'https://1a14-115-74-192-50.ngrok-free.app/hello';
 
   Future<List<User>> fetchUsers() async {
     try {
@@ -33,5 +37,52 @@ class UserProvider with ChangeNotifier {
   void setUsers(List<User> users) {
     _users = users;
     notifyListeners();
+  }
+}
+
+
+
+class UserPage extends StatefulWidget {
+  @override
+  _UserPageState createState() => _UserPageState();
+}
+
+class _UserPageState extends State<UserPage> {
+  final UserService userService = UserService();
+
+  @override
+  void initState() {
+    super.initState();
+    fetchAndSetUsers();
+  }
+
+  Future<void> fetchAndSetUsers() async {
+    try {
+      final users = await userService.fetchUsers();
+      Provider.of<UserProvider>(context, listen: false).setUsers(users);
+    } catch (error) {
+      print('Error fetching users: $error');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final users = Provider.of<UserProvider>(context).users;
+
+    return Scaffold(
+      appBar: AppBar(title: Text('Users')),
+      body: ListView.builder(
+        itemCount: users.length,
+        itemBuilder: (ctx, index) {
+          return ListTile(
+            title: Text(users[index].name),
+            subtitle: Text(users[index].email),
+            leading: CircleAvatar(
+              backgroundImage: NetworkImage(users[index].avatarUrl),
+            ),
+          );
+        },
+      ),
+    );
   }
 }

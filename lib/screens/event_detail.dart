@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vou/models/event_model.dart';
+import 'package:vou/screens/voucher_convert.dart';
 
 class EventDetailPage extends StatelessWidget {
   final Event event;
@@ -49,6 +50,35 @@ class EventDetailPage extends StatelessWidget {
             Text(
               'Total Points: ${event.totalPoint}',
               style: TextStyle(fontSize: 16, color: Colors.blue),
+            ),
+            ElevatedButton(
+              onPressed: () {
+
+              }                        ,
+              child: Center(
+                child: Text(
+                  "START",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ConvertPointsPage(point: this.event.totalPoint)),
+                );
+              }                        ,
+              child: Center(
+                child: Text(
+                  "VOUCHER CONVERT",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
           ],
         ),

@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vou/models/user_model.dart';
+import 'package:vou/screens/login.dart';
+
+
+Future<void> logout() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.remove('isLoggedIn');
+}
 
 class ProfilePage extends StatelessWidget {
+  final User user;
+  ProfilePage({required this.user});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,11 +31,11 @@ class ProfilePage extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'Viet',
+              user.name,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             Text(
-              'viet@example.com',
+              user.email,
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
             SizedBox(height: 20),
@@ -86,9 +97,12 @@ class ProfilePage extends StatelessWidget {
                             ),
                             TextButton(
                               child: Text('Logout'),
-                              onPressed: () {
-                                Navigator.pop(context);
-                                Navigator.pushReplacementNamed(context, '/login');
+                              onPressed: () async {
+                                await logout();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Login()),
+                                );
                               },
                             ),
                           ],

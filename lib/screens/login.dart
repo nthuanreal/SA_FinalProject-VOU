@@ -1,8 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:vou/models/event_model.dart';
 import 'package:vou/screens/home.dart';
 import 'package:vou/screens/register.dart';
 import 'package:vou/screens/reset_password.dart';
+import 'package:vou/models/user_model.dart';
 
 class Login extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
@@ -121,7 +123,7 @@ class Login extends StatelessWidget {
                                 controller: _emailController,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
-                                  hintText: "Email or Phone number",
+                                  hintText: "Email",
                                   hintStyle: TextStyle(color: Colors.grey[700]),
                                 ),
                               ),
@@ -157,13 +159,20 @@ class Login extends StatelessWidget {
                             );
                           } else {
                             // Perform login or navigate
+
+
+                            //Handle get user and show event.
+
+
+                            User user = new User(id: "id", name: "name", email: "email", avatarUrl: "url");
+                            List<Event> event = [];
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => HomePage()), // Replace with your actual HomePage widget
+                              MaterialPageRoute(builder: (context) => HomePage(user: user,event: event,)),
                             );
 
                           }
-                        }                        ,
+                        },
                         child: Center(
                           child: Text(
                             "Login",
@@ -179,7 +188,7 @@ class Login extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ForgetPasswordPage()), // Replace with your actual HomePage widget
+                          MaterialPageRoute(builder: (context) => ForgetPasswordPage()),
                         );
                       },
                       child: Text(
@@ -191,7 +200,7 @@ class Login extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => RegisterPage()), // Replace with your actual HomePage widget
+                          MaterialPageRoute(builder: (context) => RegisterPage()),
                         );
                       },
                       child: Text(

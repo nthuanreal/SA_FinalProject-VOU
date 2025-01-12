@@ -44,15 +44,6 @@ class RegisterPage extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextField(
-                keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
-                  labelText: 'Phone Number',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.phone),
-                ),
-              ),
-              SizedBox(height: 20),
-              TextField(
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',

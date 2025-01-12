@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:vou/models/event_model.dart';
 import 'package:vou/screens/event.dart';
+import 'package:vou/screens/event_detail.dart';
 import 'package:vou/screens/profile.dart';
+import 'package:vou/models/user_model.dart';
 
 class HomePage extends StatelessWidget {
+  final User user;
+  final List<Event> event;
+  HomePage(
+      {
+        required this.user,
+        required this.event,
+      });
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +37,7 @@ class HomePage extends StatelessWidget {
             children: [
               // Welcome Message
               Text(
-                'Welcome Back, User!',
+                'Welcome Back,' + user.name,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -105,13 +115,23 @@ class HomePage extends StatelessWidget {
               SizedBox(height: 10),
               Container(
                 height: 150,
-                child: ListView(
+                child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    _buildEventCard('Event1', 'assets/images/course1.png'),
-                    _buildEventCard('Event2', 'assets/images/course2.png'),
-                    _buildEventCard('Event3', 'assets/images/course3.png'),
-                  ],
+                  itemCount: 3, // Number of items in the list
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EventDetailPage(event: event[index]),
+                          ),
+                        );
+                      },
+                      child: _buildEventCard("event[index].title", "event[index].imageUrl"),
+                      //child: _buildEventCard(event[index].title, event[index].imageUrl),
+                    );
+                  },
                 ),
               ),
             ],
@@ -139,7 +159,7 @@ class HomePage extends StatelessWidget {
             case 2:
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ProfilePage()), // Replace with your actual HomePage widget
+                MaterialPageRoute(builder: (context) => ProfilePage(user: user)), // Replace with your actual HomePage widget
               );
               break;
           }
