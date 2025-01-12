@@ -9,7 +9,6 @@ import (
 type Config struct {
 	Server struct {
 		Host     string `yaml:"host"`
-		Port     string `yaml:"port"`
 		HTTPPort string `yaml:"httpport"`
 	} `yaml:"server"`
 

@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# filepath: /c:/Users/gbach/OneDrive - VNU-HCMUS/Desktop/promotion_service/wait-for-it.sh
 
 set -e
 
