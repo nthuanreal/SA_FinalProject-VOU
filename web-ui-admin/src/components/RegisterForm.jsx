@@ -24,7 +24,7 @@ const RegisterForm = () => {
     <>
     <div className="glass-container">
       <div className="login-box">
-        <h2 class = "form-title">Register</h2>
+        <h2 className = "form-title">Register</h2>
         <form onSubmit={handleRegister}>
 
           <input

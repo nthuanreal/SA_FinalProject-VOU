@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import API from "../services/api";
-import {getInfoFromToken} from "../services/auth";
+import { getInfoFromToken } from "../services/auth";
 
 const UserTable = ({ currentUsers, updateUserInList }) => {
   const [editingUserId, setEditingUserId] = useState(null);
@@ -15,27 +15,33 @@ const UserTable = ({ currentUsers, updateUserInList }) => {
 
   const handleSave = async () => {
     const admin = getInfoFromToken();
-    if(editingUserId === admin.id){
+    if (editingUserId === admin.id) {
       alert("Failed to update admin ");
-      setEditedUser(null);  
+      setEditedUser(null);
       setEditingUserId(null)
+      return;
+    }
+    if (!editedUser.username) {
+      alert("Failed to update user: username must not empty! ");
+      setEditedUser(null);
+      setEditingUserId(null);
       return;
     }
     try {
       // console.log(editedUser)
       await API.put(`user/edit-user`, {
         id: editingUserId,
-        username: editedUser.username.trim(),
-        email: editedUser.email.trim(),
+        username: editedUser.username,
+        email: editedUser.email|| " ",
         role: editedUser.role,
         partner_id: editedUser.partner_id,
         isActive: editedUser.isActive,
       });
       updateUserInList();
-      setEditedUser(null);  
+      setEditedUser(null);
       setEditingUserId(null)
       alert("User updated successfully!");
-      
+
     } catch (error) {
       console.log("err = ", error);
       alert("Failed to update user: ");
@@ -52,6 +58,12 @@ const UserTable = ({ currentUsers, updateUserInList }) => {
     const { name, value } = e.target;
     if (name === "partner_id") {
       setEditedUser((prev) => ({ ...prev, [name]: Number(value) }));
+    }
+    else if (name === "email" && value === " ") {
+      setEditedUser((prev) => ({
+        ...prev,
+        [name]: " "
+      }));
     } else {
       setEditedUser((prev) => ({ ...prev, [name]: value }));
     }
@@ -117,7 +129,7 @@ const UserTable = ({ currentUsers, updateUserInList }) => {
                     className="edit-info"
                     type="number"
                     name="partner_id"
-                    value={editedUser.role === "partner" ? editedUser.partner_id:0}
+                    value={editedUser.role === "partner" ? editedUser.partner_id : 0}
                     onChange={handleInputChange}
                   />
                 </td>
@@ -151,7 +163,7 @@ const UserTable = ({ currentUsers, updateUserInList }) => {
                 <td className="user-info">{user.username}</td>
                 <td className="user-info">{user.email}</td>
                 <td className="user-info">{user.role}</td>
-                <td className="user-info">{user.role === "partner" ? user.partner_id:0}</td>
+                <td className="user-info">{user.role === "partner" ? user.partner_id : 0}</td>
                 <td style={{ color: user.isActive ? "green" : "red" }}>
                   {user.isActive ? "Active" : "Inactive"}
                 </td>
