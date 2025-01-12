@@ -120,16 +120,41 @@
 }
 
 .table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
 
-.table th, .table td {
+  width: 100%;
+  border-spacing: 0;
+  margin-top: 20px;
+  border-radius: 20px;
+}
+table th {
+	border: 1px solid #a7a7a7;
+	padding: 8px;
+	text-align: left;
+  }
+table tr, td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 }
+.table tr:first-child th:first-child {
+	border-top-left-radius: 20px; /* Góc trái trên */
+	border-left: none; /* Xóa viền trái */
+  }
+  
+  .table tr:first-child th:last-child {
+	border-top-right-radius: 20px; /* Góc phải trên */
+	border-right: none; /* Xóa viền phải */
+  }
+  
+  .table tr:last-child td:first-child {
+	border-bottom-left-radius: 20px; /* Góc trái dưới */
+	border-left: none; /* Xóa viền trái */
+  }
+  
+  .table tr:last-child td:last-child {
+	border-bottom-right-radius: 20px; /* Góc phải dưới */
+	border-right: none; /* Xóa viền phải */
+  }
 
 .cards {	
   display: flex;
@@ -146,17 +171,17 @@
 }
 
 .btn-signout {
-  background-color: #ff4d4f; /* Màu đỏ nổi bật */
-  color: white; /* Màu chữ trắng */
-  border: none; /* Xóa viền */
-  padding: 10px 20px; /* Khoảng cách trong nút */
-  margin: 10px;
-  border-radius: 25px; /* Bo tròn các góc */
-  font-size: 16px; /* Kích thước chữ */
-  font-weight: bold; /* Chữ đậm */
-  cursor: pointer; /* Con trỏ thành dạng "tay" khi hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
-  transition: all 0.3s ease-in-out; /* Hiệu ứng chuyển đổi mượt */
+	background-color: #ff4d4f; /* Màu đỏ nổi bật */
+	color: white; /* Màu chữ trắng */
+	border: none; /* Xóa viền */
+	padding: 10px 20px; /* Khoảng cách trong nút */
+	margin: 10px;
+	border-radius: 25px; /* Bo tròn các góc */
+	font-size: 16px; /* Kích thước chữ */
+	font-weight: bold; /* Chữ đậm */
+	cursor: pointer; /* Con trỏ thành dạng "tay" khi hover */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+	transition: all 0.3s ease-in-out; /* Hiệu ứng chuyển đổi mượt */
 }
 
 /*  */
@@ -190,20 +215,22 @@
 
 
 	.profile-card{
-		width: 360px;
+		width: 500px;
 		border-radius: 15px;
 		overflow: hidden;
 		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 		position: relative;
 		margin: auto;
-		background: rgba(219, 166, 21, 0.707);
+		background: rgba(238, 194, 75, 0.707);
 		top: 50%;
 		transform: translateY(-50%);
 	}
 
 
 
+
 	.profile-card header{
+		height: 300px;
 		display: block;
 		position: relative;
 		background: rgba(255,255,255,1);
@@ -298,28 +325,9 @@
 	}
 
 	/*  */
-	button.edit-user {
-		background-color: rgba(0, 98, 255, 0.575) ;
-		margin:0;
-		padding: 5px;
-		font-size: 8;
 
-	}
 
-	button.save-user {
-		margin:0;
-		padding: 5px;
-		padding: 5px;
-		font-size: 8;
 
-	}
-	button.cancel-user {
-		background-color: rgba(255, 72, 0, 0.575) ;
-		margin:5px;
-		padding: 5px;
-		font-size: 8;
-
-	}
 	.double-button{
 		display:flex;
 	}
@@ -328,6 +336,7 @@
 	}
 
 	table.table{
+		
 		background-color: #faf8f8;
 		border: 2px solid  #000000 ;
 
@@ -390,11 +399,97 @@
 
 /*  */
 .edit-info{
+	border: 1px solid rgba(128, 128, 128, 0.189);
+	background-color: lightgoldenrodyellow;
 	min-width: 150px;
 	margin:0;
-	padding:0;
+	padding:5px;
 	color: black;
 }
+
+input::placeholder {
+	color: gray; /* Thay đổi màu sắc */
+	font-size: 8;
+	font-style: italic; /* Thêm kiểu chữ nếu cần */
+  }
 .user-info{
 	min-width: 200px;
+}
+
+.btn-change-password{
+	background-color: #29b0e5; /* Màu đỏ nổi bật */
+	color: white; /* Màu chữ trắng */
+	border: none; /* Xóa viền */
+	padding: 10px 20px; /* Khoảng cách trong nút */
+	margin: 10px;
+	border-radius: 25px; /* Bo tròn các góc */
+	font-size: 16px; /* Kích thước chữ */
+	font-weight: bold; /* Chữ đậm */
+	cursor: pointer; /* Con trỏ thành dạng "tay" khi hover */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+	transition: all 0.3s ease-in-out; /* Hiệu ứng chuyển đổi mượt */
+}
+.btn-save-profile{
+	background-color: #77e529; /* Màu đỏ nổi bật */
+	color: white; /* Màu chữ trắng */
+	border: none; /* Xóa viền */
+	padding: 10px 20px; /* Khoảng cách trong nút */
+	margin: 10px;
+	border-radius: 25px; /* Bo tròn các góc */
+	font-size: 16px; /* Kích thước chữ */
+	font-weight: bold; /* Chữ đậm */
+	cursor: pointer; /* Con trỏ thành dạng "tay" khi hover */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+	transition: all 0.3s ease-in-out; /* Hiệu ứng chuyển đổi mượt */
+}
+
+.btn-save{
+	background-color: #77e529; /* Màu đỏ nổi bật */
+	color: white; /* Màu chữ trắng */
+	border: none; /* Xóa viền */
+	padding: 10px 20px; /* Khoảng cách trong nút */
+	margin: 0px;
+	border-radius: 25px; /* Bo tròn các góc */
+	font-size: 16px; /* Kích thước chữ */
+	font-weight: bold; /* Chữ đậm */
+	cursor: pointer; /* Con trỏ thành dạng "tay" khi hover */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+	transition: all 0.3s ease-in-out; /* Hiệu ứng chuyển đổi mượt */
+}
+
+.btn-cancel{
+	background-color: #e59729; 
+	color: white; /* Màu chữ trắng */
+	border: none; /* Xóa viền */
+	padding: 10px 20px; /* Khoảng cách trong nút */
+	margin: 0px;
+	border-radius: 25px; /* Bo tròn các góc */
+	font-size: 16px; /* Kích thước chữ */
+	font-weight: bold; /* Chữ đậm */
+	cursor: pointer; /* Con trỏ thành dạng "tay" khi hover */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+	transition: all 0.3s ease-in-out; /* Hiệu ứng chuyển đổi mượt */
+}
+.btn-edit{
+	background-color: #29a3e5; 
+	color: white; /* Màu chữ trắng */
+	border: none; /* Xóa viền */
+	padding: 10px 20px; /* Khoảng cách trong nút */
+	margin: 0px;
+	border-radius: 25px; /* Bo tròn các góc */
+	font-size: 16px; /* Kích thước chữ */
+	font-weight: bold; /* Chữ đậm */
+	cursor: pointer; /* Con trỏ thành dạng "tay" khi hover */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+	transition: all 0.3s ease-in-out; /* Hiệu ứng chuyển đổi mượt */
+}
+
+.align-center{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.noborder{
+	border: 0px;
 }

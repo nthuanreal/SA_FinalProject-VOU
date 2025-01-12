@@ -8,12 +8,11 @@ const UserManagement = () => {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 10;
-
+  const fetchUsers = async () => {
+    const { data } = await API.get("user/list");
+    setUsers(data);
+  };
   useEffect(() => {
-    const fetchUsers = async () => {
-      const { data } = await API.get("user/list");
-      setUsers(data);
-    };
     fetchUsers();
   },[]);
 
@@ -29,11 +28,14 @@ const UserManagement = () => {
     setCurrentPage(page);
   };
 
+  const updateUserInList = () => {
+    fetchUsers();
+  };
 
   return (
     <div>
       <h2>User Management</h2>
-      <UserTable currentUsers={currentUsers} />
+      <UserTable currentUsers={currentUsers}  updateUserInList={updateUserInList}/>
       <div className="pagination">
         {Array.from({ length: totalPages }, (_, index) => (
           <button

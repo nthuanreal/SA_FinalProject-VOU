@@ -4,6 +4,7 @@ import RegisterPage from "../pages/RegisterPage.jsx";
 import ProfilePage from "../pages/ProfilePage";
 import DashboardPage from "../pages/DashboardPage";
 import { getRoleFromToken, getToken, removeToken } from "../services/auth";
+import ChangePassword from "../components/changePassword.jsx";
 
 const ProtectedRoute = ({ children, roles }) => {
   const userRole = getRoleFromToken();
@@ -48,6 +49,14 @@ export default function AppRoutes() {
             <ProfilePage />
           </ProtectedRoute>
         } />
+
+        <Route path="/changePassword" element ={
+          <ProtectedRoute roles = { ['user','partner','admin']}>
+            <ChangePassword />
+          </ProtectedRoute>
+        }
+        />
+
         <Route path="/dashboard" element={
           <ProtectedRoute roles={['admin']}>
             <DashboardPage/>

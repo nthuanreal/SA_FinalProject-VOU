@@ -9,9 +9,11 @@ const RegisterForm = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setUsername(username.trim());
     try {
       await API.post("auth/register", { username, password });
       alert("Registration successful!");
+      
       navigate("/login");
     } catch (error) {
       alert("Registration failed");
@@ -43,7 +45,7 @@ const RegisterForm = () => {
             required
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value.trim())}
             maxLength={50} 
           />
 
