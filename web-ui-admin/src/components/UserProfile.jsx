@@ -1,52 +1,4 @@
-// import React, { useEffect, useState } from "react";
-// import { getInfoFromToken } from "../services/auth";
-// import Logout from "./logoutBtn";
-// import { useNavigate } from "react-router-dom";
 
-
-// const UserProfile = () => {
-//   const [data, setdata] = useState([]);
-//   const navigate = useNavigate()
-//   let userdata;
-//   useEffect(() => {
-
-//     const getInfo = async () => {
-//       userdata = await getInfoFromToken();
-//       setdata(userdata);
-//     };
-//     getInfo();
-//     console.log(data)
-//   }, []);
-
-//   const handleEditProfile = ()=> {
-
-//   }
-//   return (
-//     <aside className="profile-card">
-//       <header>
-//         <img src="/user-avatar.png  " />
-//         <h1>{data.username}</h1>
-//         <h2>{data.role}</h2>
-//       </header>
-//       <div className="profile-bio">
-//         <p> Email: {data.email}</p>
-//         <div> 
-//           <button className="btn-change-password" onClick={() => { navigate("/changePassword"); }}>
-//             Edit Password
-//           </button>
-//           <button className="btn-change-password" onClick={handleEditProfile}>
-//             Edit Profile
-//           </button>
-//           <Logout />
-//         </div>
-//       </div>
-
-//     </aside>
-
-//   );
-// };
-
-// export default UserProfile;
 import React, { useEffect, useState } from "react";
 import { getInfoFromToken } from "../services/auth";
 import Logout from "./logoutBtn";
@@ -63,7 +15,7 @@ const UserProfile = () => {
     const getInfo = async () => {
       try {
         const userdata = await getInfoFromToken();
-        setData(userdata);
+        setData({ username: userdata.username, email: userdata.email, role: userdata.role });
         setEditData({ username: userdata.username, email: userdata.email });
       } catch (error) {
         console.error("Error fetching user data:", error);
