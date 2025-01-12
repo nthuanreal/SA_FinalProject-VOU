@@ -1,32 +1,34 @@
-# Use an official Golang image to build the application
+# Sử dụng image Golang chính thức để build ứng dụng
 FROM golang:1.22 AS builder
 
-# Set the working directory inside the container
+# Thiết lập thư mục làm việc trong container
 WORKDIR /app
 
-# Copy module files and download dependencies
+# Copy file module và cài đặt dependencies
 COPY go.mod go.sum ./
 RUN go mod download
 
-# Copy the entire source code into the container
+# Copy toàn bộ mã nguồn vào container
 COPY . .
 
-# Build the Go application with environment variables to ensure it builds for Linux
+# Build ứng dụng Go với các biến môi trường để đảm bảo build cho Linux
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o promotion_service ./cmd/main.go
 
-# Use a smaller image to run the application
+# Sử dụng một image nhỏ hơn để chạy ứng dụng
 FROM alpine:latest
 
-# Install necessary dependencies (if any)
+# Cài đặt các dependencies cần thiết (nếu có)
 RUN apk --no-cache add ca-certificates bash
 
-# Copy the executable from the builder stage to the runtime stage
+# Copy file thực thi từ builder stage sang runtime stage
 COPY --from=builder /app/promotion_service /promotion_service
 COPY config.yaml /config.yaml
 COPY wait-for-it.sh /wait-for-it.sh
 
-# Ensure the executable has execution permissions
+# Đảm bảo file thực thi có quyền thực thi
+# RUN chmod +x /promotion_service
 RUN chmod +x /promotion_service /wait-for-it.sh
 
-# Set the entrypoint to run the application
+# Thiết lập entrypoint để chạy ứng dụng
 ENTRYPOINT ["/wait-for-it.sh", "db:3306", "--", "/promotion_service"]
+# ENTRYPOINT ["/promotion_service"]

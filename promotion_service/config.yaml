@@ -1,11 +1,10 @@
 server:
-  host: "127.0.0.1" 
-  port: "4000"
+  host: "0.0.0.0" 
   httpport: "3001"
 
 database:
-  host: "localhost"
-  port: "3393"
+  host: db
+  port: "3306"
   user: "root"
   password: "123456"
-  name: "loyalty_service"
+  name: "promotion_service"

@@ -1,35 +1,25 @@
 version: '3.8'
 
 services:
-  db:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: promotion-service
+  promotion_service:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "3306:3306"
-    networks:
-      - app-net
-
-  promotion:
-    build: .
-    command: ["/wait-for-it.sh", "db:3306", "--", "/promotion_service"]
+      - "3001:3001"
     depends_on:
       - db
     environment:
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_USER: root
-      DB_PASSWORD: 123456
-      DB_NAME: promotion
-    ports:
-      - "4000:4000"
-      - "8080:8080"
-    networks:
-      - app-net
-    deploy:
-      replicas: 1 
+      - DATABASE_URL=mysql://root:123456@db:3306/promotion_service
 
-networks:
-  app-net:
-    driver: bridge
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: promotion_service
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
