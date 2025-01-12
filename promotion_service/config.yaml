@@ -1,0 +1,11 @@
+server:
+  host: "127.0.0.1" 
+  port: "4000"
+  httpport: "3001"
+
+database:
+  host: "localhost"
+  port: "3393"
+  user: "root"
+  password: "123456"
+  name: "loyalty_service"
