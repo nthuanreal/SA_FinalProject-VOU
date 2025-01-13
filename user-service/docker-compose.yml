@@ -1,15 +1,10 @@
 services:
   app:
-    image: nthuanreal/user-service
-    platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: user-service
     ports:
       - "${PORT}:${PORT}"
-    volumes:
-      - .:/app
     depends_on:
       - postgres
     environment:

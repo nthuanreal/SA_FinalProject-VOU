@@ -1,14 +1,16 @@
 # Sử dụng Node.js làm base image
-FROM node:18
+FROM node:20
 
 # Thiết lập thư mục làm việc trong container
-WORKDIR /app
+WORKDIR /user-service
 
 # Sao chép package.json và package-lock.json vào container
 COPY package*.json ./
+RUN ls -al /user-service 
 
 # Cài đặt các dependencies
 RUN npm install
+RUN ls -al /user-service  
 
 # Sao chép toàn bộ mã nguồn vào container
 COPY . .
