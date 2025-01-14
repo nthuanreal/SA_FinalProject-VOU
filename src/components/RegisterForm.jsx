@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import API from "../services/api";
+import APIserviceFactory from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+  const API = APIserviceFactory.userService;
   const handleRegister = async (e) => {
     e.preventDefault();
     setUsername(username.trim());
@@ -24,7 +24,7 @@ const RegisterForm = () => {
     <>
     <div className="glass-container">
       <div className="login-box">
-        <h2 class = "form-title">Register</h2>
+        <h2 className = "form-title">Register</h2>
         <form onSubmit={handleRegister}>
 
           <input

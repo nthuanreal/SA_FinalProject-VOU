@@ -5,7 +5,8 @@ import ProfilePage from "../pages/ProfilePage";
 import DashboardPage from "../pages/DashboardPage";
 import { getRoleFromToken, getToken, removeToken } from "../services/auth";
 import ChangePassword from "../components/changePassword.jsx";
-
+import UnderConstruction from "../components/UnderConstruction.jsx"
+import APIserviceFactory from "../services/api.js";
 const ProtectedRoute = ({ children, roles }) => {
   const userRole = getRoleFromToken();
   if (!userRole) return <Navigate to="/login" />;
@@ -13,11 +14,22 @@ const ProtectedRoute = ({ children, roles }) => {
   return children;
 };
 
+
+const fetchProfile = async () => {
+  const { data } = await APIserviceFactory.userService.get("user/profile");
+  return data;
+};
+
+const Validate = ()=>{
+    return fetchProfile()? true:false;
+}
+
 const AuthRoute = ({children}) => {
   const token = getToken();
     if (token) {
+      console.log("validate: ", Validate())
       const userRole = getRoleFromToken();
-      if (!userRole) {
+      if (!userRole || !Validate()) {
         removeToken();
         return <Navigate to="/login" />;
       }
@@ -33,12 +45,14 @@ export default function AppRoutes() {
   return (
     <Router>
       <Routes>
+
         <Route path="/login" element={
           <AuthRoute>
             <LoginPage />
           </AuthRoute>
 
         } />
+        <Route path="/" element={<Navigate to ="/login"/>}/>
         <Route path="/register" element={
           <AuthRoute>
             <RegisterPage />
@@ -62,7 +76,11 @@ export default function AppRoutes() {
             <DashboardPage/>
           </ProtectedRoute>
         } />
-        <Route path="*" element={<Navigate to="/login" />} />
+
+        <Route path="/404-not-found" element={
+            <UnderConstruction/>
+        } />
+        <Route path="*" element={<Navigate to="/404-not-found" />} />
       </Routes>
     </Router>
   );

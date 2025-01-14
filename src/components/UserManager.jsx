@@ -1,10 +1,10 @@
 
 import React, { useEffect, useState } from "react";
-import API from "../services/api";
+import APIserviceFactory from "../services/api";
 import UserTable from "./UserTable";
 
 const UserManagement = () => {
-
+  const API = APIserviceFactory.userService;
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 10;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API from "../services/api";
+import APIserviceFactory from "../services/api";
 import { getRoleFromToken, saveToken } from "../services/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +7,7 @@ const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+  const API = APIserviceFactory.userService;
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
