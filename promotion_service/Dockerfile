@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy file module và cài đặt dependencies
 COPY go.mod go.sum ./
-RUN go mod download
+# RUN go mod tidy
 
 # Copy toàn bộ mã nguồn vào container
 COPY . .
