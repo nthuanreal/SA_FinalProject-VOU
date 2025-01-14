@@ -1,0 +1,9 @@
+{
+    "env": {
+        "BRANCH": "frontend-admin"
+    },
+    "scripts": {
+        "vercel-deploy": "if [ \"$BRANCH\" != \"frontend-admin\" ]; then echo \"Cannot deploy from $BRANCH branch\"; exit 1; fi"
+    }
+
+}
