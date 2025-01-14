@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import API from "../services/api";
+import APIserviceFactory from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+  const API = APIserviceFactory.userService;
   const handleRegister = async (e) => {
     e.preventDefault();
     setUsername(username.trim());
@@ -16,7 +16,7 @@ const RegisterForm = () => {
       
       navigate("/login");
     } catch (error) {
-      alert("Registration failed");
+      alert("Registration failed: "+ error.response.data.message);
     }
   };
 
@@ -53,7 +53,7 @@ const RegisterForm = () => {
           </div>
           <button type="submit">Register</button>
 
-          <p>Already have an account? <a className="login-register-link" href="/login" id="register">Login</a>.</p>
+          <p>Already have an account? <a className="login-register-link" onClick={()=>{navigate("/login")}} id="register">Login</a>.</p>
         </form>
       </div>
     </div>

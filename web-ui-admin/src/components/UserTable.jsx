@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import API from "../services/api";
+import APIserviceFactory from "../services/api";
 import { getInfoFromToken } from "../services/auth";
 
 const UserTable = ({ currentUsers, updateUserInList }) => {
   const [editingUserId, setEditingUserId] = useState(null);
   const [editedUser, setEditedUser] = useState(null);
-
+  const API = APIserviceFactory.userService;
 
 
   const handleEdit = (user) => {
@@ -28,7 +28,6 @@ const UserTable = ({ currentUsers, updateUserInList }) => {
       return;
     }
     try {
-      // console.log(editedUser)
       await API.put(`user/edit-user`, {
         id: editingUserId,
         username: editedUser.username,
@@ -43,8 +42,7 @@ const UserTable = ({ currentUsers, updateUserInList }) => {
       alert("User updated successfully!");
 
     } catch (error) {
-      console.log("err = ", error);
-      alert("Failed to update user: ");
+      alert("Failed to update user: "+ error.response.data.message);
     }
   };
 
@@ -84,7 +82,7 @@ const UserTable = ({ currentUsers, updateUserInList }) => {
       </thead>
       <tbody>
         {currentUsers.map((user) => (
-          <tr key={user.id}>
+          <tr key={user.id} className="max-h">
             <td>{user.id}</td>
             {editingUserId === user.id ? (
               <>

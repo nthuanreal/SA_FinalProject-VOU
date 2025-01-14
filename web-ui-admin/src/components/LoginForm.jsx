@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API from "../services/api";
+import APIserviceFactory from "../services/api";
 import { getRoleFromToken, saveToken } from "../services/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +7,7 @@ const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+  const API = APIserviceFactory.userService;
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -21,7 +21,7 @@ const LoginForm = () => {
         navigate("/dashboard");
       }
     } catch (error) {
-      alert("Login failed");
+      alert("Login failed: " + error.response.data.message);
     }
   };
 
@@ -57,7 +57,7 @@ const LoginForm = () => {
             </div>
             <button type="submit">Login</button>
 
-            <p>Don't have an account? <a href="/register" id="register">Register</a></p>
+            <p>Don't have an account? <a onClick={()=>{navigate("/register")}} id="register">Register</a></p>
           </form>
         </div>
       </div>

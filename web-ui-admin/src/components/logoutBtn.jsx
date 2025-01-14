@@ -10,7 +10,7 @@ const Logout = () => {
       navigate("/");
       alert("Logged out successfully!");
     } catch (error) {
-      console.error("Error during logout:", error);
+      // console.error("Error during logout:", error);
       alert("Logout failed. Please try again.");
     }
   };

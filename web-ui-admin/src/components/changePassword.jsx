@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import API from "../services/api"
+import APIserviceFactory from "../services/api"
 import React, { useEffect, useState } from 'react';
 
 const ChangePassword = () => {
+    const API = APIserviceFactory.userService;
     const [password, setPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const handleInputChange = (e) => {
@@ -40,7 +41,7 @@ const ChangePassword = () => {
             setPassword("");
             setNewPassword("");
         } catch (error) {
-            console.error("Error during Change Password:", error);
+
             alert("Change Password failed. Please try again.");
         }
     }

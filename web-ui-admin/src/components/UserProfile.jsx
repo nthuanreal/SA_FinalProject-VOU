@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import { getInfoFromToken } from "../services/auth";
 import Logout from "./logoutBtn";
 import { useNavigate } from "react-router-dom";
-import  API  from "../services/api";
+import  APIserviceFactory  from "../services/api";
 
 const UserProfile = () => {
+  const API = APIserviceFactory.userService;
   const [data, setData] = useState({ username: "", email: "", role: "" });
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({ username: "", email: "" });

@@ -1,41 +1,59 @@
-
 import React, { useEffect, useState } from "react";
 import APIserviceFactory from "../services/api";
-import UserTable from "./UserTable";
 
-const UserManagement = () => {
-  const API = APIserviceFactory.userService;
-  const [users, setUsers] = useState([]);
+const GameManagerment = () => {
+  const API = APIserviceFactory.gameService;
+  const [games, setGames] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 5;
-  const fetchUsers = async () => {
-    const { data } = await API.get("user/list");
-    setUsers(data);
+  const gamesPerPage = 6; // 2 hàng, mỗi hàng 3 thẻ game
+
+  // Fetch games from API
+  const fetchGames = async () => {
+    try {
+      const { data } = await API.get("games");
+      setGames(data.data);
+    } catch (error) {
+      console.error("Error fetching games:", error);
+    }
   };
+
   useEffect(() => {
-    fetchUsers();
+    fetchGames();
   }, []);
 
-  const indexOfLastUser = currentPage * usersPerPage;
-  const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+  // Calculate pagination
+  const totalPages = Math.ceil(games.length / gamesPerPage);
+  const currentGames = games.slice(
+    (currentPage - 1) * gamesPerPage,
+    currentPage * gamesPerPage
+  );
 
-  // Tổng số trang
-  const totalPages = Math.ceil(users.length / usersPerPage);
-
-  // Chuyển đến trang khác
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  const updateUserInList = () => {
-    fetchUsers();
+
+  const handleImageError = (event) => {
+    event.target.src = "/default-game.jpg"; 
   };
 
   return (
     <div>
-      <h2 className='dashboard-title'>USER MANAGEMENT</h2>
-      <UserTable currentUsers={currentUsers} updateUserInList={updateUserInList} />
+      <h2 className='dashboard-title' >GAME MANAGEMENT</h2>
+      <div className="game-container">
+        {currentGames.map((game) => (
+          <div className="game-card" key={game._id}>
+            <img
+              src={game.image}
+              alt={game.name}
+              className="game-image"
+              onError={handleImageError}
+            />
+            <h3 className="game-name">{game.name}</h3>
+          </div>
+        ))}
+      </div>
+
       <div className="pagination">
         {/* First Page Button */}
         <button
@@ -55,7 +73,7 @@ const UserManagement = () => {
 
         {/* Page Numbers */}
         {Array.from({ length: Math.min(5, totalPages) }, (_, index) => {
-        let page;
+            let page;
           // Xử lý khi currentPage nằm ở đầu dải
           if (currentPage <= 3) {
             page = index + 1; // Hiển thị từ trang 1 đến 5 hoặc đến totalPages nếu ít hơn
@@ -75,7 +93,7 @@ const UserManagement = () => {
           return (
             <button
               key={page}
-              onClick={(e) => handlePageChange(page)}
+              onClick={() => handlePageChange(page)}
               className={currentPage === page ? "active" : ""}
             >
               {page}
@@ -100,10 +118,10 @@ const UserManagement = () => {
         </button>
       </div>
 
+
+      
     </div>
   );
 };
 
-
-
-export default UserManagement;
+export default GameManagerment;
