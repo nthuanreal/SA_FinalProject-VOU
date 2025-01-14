@@ -1,14 +1,24 @@
 # Sử dụng Node.js làm base image
+<<<<<<< HEAD
 FROM node:19.5.0-alpine
+=======
+FROM node:20
+>>>>>>> 5beaba6ed9b0e9e3445a7941819cede43d739e84
 
 # Thiết lập thư mục làm việc trong container
-WORKDIR /app
+WORKDIR /user-service
 
 # Sao chép package.json và package-lock.json vào container
 COPY package*.json ./
+RUN ls -al /user-service 
 
 # Cài đặt các dependencies
+<<<<<<< HEAD
 RUN npm install --legacy-peer-deps
+=======
+RUN npm install
+RUN ls -al /user-service  
+>>>>>>> 5beaba6ed9b0e9e3445a7941819cede43d739e84
 
 # Sao chép toàn bộ mã nguồn vào container
 COPY . .
